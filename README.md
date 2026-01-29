@@ -1,5 +1,7 @@
 # Lineage-aware_CL
 
+LCL is a contrastive learning framework that treats inheritable lineage barcodes as a "natural" data augmentation mechanism to isolate subtle fate-determining signals and enable robust representation transfer to unlabeled single-cell datasets.
+
 ## Environment requirement
 
 This project requires a Conda environment specified in `environment.yml`.
@@ -55,9 +57,7 @@ python project_head_extraction.py \
   --out_file_name projection_embeddings.npy
 ```
 
-- `<INPUT_DATA.h5ad>`: AnnData file used for embedding extraction  
-- `<CHECKPOINT.ckpt>`: trained LCL model checkpoint  
-- `<OUTPUT_DIR>`: directory where embeddings will be saved  
+
 
 ## File Organization
 
