@@ -1,11 +1,63 @@
 # Lineage-aware_CL
 
-## dependicys 
+## Environment requirement
 
-## Example Usage
+This project requires a Conda environment specified in `environment.yml`.
 
-An example usage file of how to LCL model is available in this repository. You can view it [here](https://github.com/SZ-yang/Lineage-aware_CL/blob/main/example_usage.ipynb).
+### Step 1: Download and create the environment
 
+```bash
+conda env create -f environment.yml
+conda activate LCL
+```
+
+## Example usage
+
+### Train the LCL model (semi-supervised)
+
+To see all available arguments:
+
+```bash
+python LCL_Main_Semi.py --help
+```
+Example training command:
+```bash
+python LCL_Main_Semi.py \
+  --inputFilePath <TRAIN_DATA.h5ad> \
+  --testFilePath <TEST_DATA.h5ad> \
+  --batch_size Batch_size \
+  --size_factor 0.04 \
+  --unlabeled_per_batch 5 \
+  --lambda_penalty 0.05 \
+  --temperature 0.5 \
+  --output_dir <OUTPUT_DIR> \
+  --train_test 1
+```
+### Feature Extraction
+After training, extract embeddings from the base encoder/proj head using the final checkpoint:
+To extract embeddings from the base encoder:
+```bash
+python feature_extraction.py \
+  --inputFilePath <INPUT_DATA.h5ad> \
+  --batch_size Batch_size \
+  --output_dir <OUTPUT_DIR> \
+  --resume_from_checkpoint <CHECKPOINT.ckpt> \
+  --out_file_name base_embeddings.npy
+
+```
+To extract embeddings from the projection head:
+```bash
+python project_head_extraction.py \
+  --inputFilePath <INPUT_DATA.h5ad> \
+  --batch_size Batch_size \
+  --output_dir <OUTPUT_DIR> \
+  --resume_from_checkpoint <CHECKPOINT.ckpt> \
+  --out_file_name projection_embeddings.npy
+```
+
+- `<INPUT_DATA.h5ad>`: AnnData file used for embedding extraction  
+- `<CHECKPOINT.ckpt>`: trained LCL model checkpoint  
+- `<OUTPUT_DIR>`: directory where embeddings will be saved  
 
 ## File Organization
 
