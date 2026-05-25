@@ -58,30 +58,3 @@ python project_head_extraction.py \
 ```
 
 
-
-## File Organization
-
-```text
-main/                                # Python scripts to train and run LCL
-
-analysis/
-├── data_processing/                 
-│   ├── cellTag/
-│   ├── cellTagMulti/
-│   ├── cellTag_cellTagMulti_Integration/
-│   └── LARRY/
-│
-├── LCL/                            
-│   ├── train_test/                  
-│   ├── train_test_unseen_lineage/   
-│   ├── simulation/                  
-│   ├── gemli/                       
-│   ├── gsea/                        
-│   └── plotting/                    
-│
-├── scVI/                            
-├── supUMAP/                         
-├── variancePartition/              
-│
-example_usage.ipynb                  # Minimal example: training LCL on a new dataset
-```
